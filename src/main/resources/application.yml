@@ -1,3 +1,20 @@
 server:
   port: 8080
 debug: true
+spring:
+    datasource:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1:3306/bulletinfo
+      username: root
+      password: 19980915mysql
+    jpa:
+      hibernate:
+      # create 自动创建新表,如果之前有就会被删除
+      # update 自动创建表,在原来表的基础上
+      # create-drop 应用停止则删表
+      # none 默认什么都不做
+      # validate 验证类属性与表结构是否一致,不一致则报错
+        #ddl-auto: create
+        ddl-auto: update
+      # 控制台显示sql语句
+      show-sql: true
