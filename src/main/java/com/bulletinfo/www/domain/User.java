@@ -102,4 +102,20 @@ public class User {
     public void setIcourl(String icourl) {
         this.icourl = icourl;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", Uid=" + Uid +
+                ", Username='" + Username + '\'' +
+                ", time='" + time + '\'' +
+                ", password='" + password + '\'' +
+                ", Sex='" + Sex + '\'' +
+                ", phone='" + phone + '\'' +
+                ", age='" + age + '\'' +
+                ", address='" + address + '\'' +
+                ", icourl='" + icourl + '\'' +
+                '}';
+    }
 }
