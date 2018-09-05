@@ -23,6 +23,22 @@ public class User {
     private String address;
     private String icourl;
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", Uid=" + Uid +
+                ", Username='" + Username + '\'' +
+                ", time='" + time + '\'' +
+                ", password='" + password + '\'' +
+                ", Sex='" + Sex + '\'' +
+                ", phone='" + phone + '\'' +
+                ", age='" + age + '\'' +
+                ", address='" + address + '\'' +
+                ", icourl='" + icourl + '\'' +
+                '}';
+    }
+
     public Integer getId() {
         return id;
     }
