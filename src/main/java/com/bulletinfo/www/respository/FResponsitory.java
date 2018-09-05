@@ -7,5 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 /**
  * Created by Mysteriouseyes on 2018/9/5.
  */
-public interface FResponsitory extends JpaRepository<Friend, Integer> { 
+public interface FResponsitory extends JpaRepository<Friend, Integer> {
+
 }
