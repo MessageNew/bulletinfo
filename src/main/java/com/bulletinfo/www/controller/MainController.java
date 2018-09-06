@@ -1,7 +1,9 @@
 package com.bulletinfo.www.controller;
 
+import com.bulletinfo.www.domain.Result;
 import com.bulletinfo.www.domain.User;
 import com.bulletinfo.www.servers.UserServers;
+import com.bulletinfo.www.utils.ResultUtils;
 import org.hibernate.tool.hbm2ddl.SchemaExport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,12 +24,12 @@ public class MainController {
         return "hello";
     }
 
-    @PostMapping("/register")
-    public String Register(@Valid User user){
+    @PostMapping("/reginster")
+    public Result Register(@Valid User user){
         System.out.println("user is:"+user);
         us.AddUser(user);
 
-        return  null;
+        return ResultUtils.success(user);
     }
 
 }

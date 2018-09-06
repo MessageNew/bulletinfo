@@ -6,7 +6,7 @@ spring:
       driver-class-name: com.mysql.jdbc.Driver
       url: jdbc:mysql://127.0.0.1:3306/bulletinfo
       username: root
-      password: 980524
+      password: 19980915mysql
     jpa:
       hibernate:
       # create 自动创建新表,如果之前有就会被删除
