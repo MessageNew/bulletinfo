@@ -3,11 +3,13 @@ package com.bulletinfo.www.domain;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * Created by Mysteriouseyes on 2018/9/5.
  */
 @Entity
+//@Table(name = "table")
 public class UserMessage {
     @Id
     @GeneratedValue
