@@ -8,7 +8,6 @@ import javax.persistence.Id;
  * Created by Mysteriouseyes on 2018/9/5.
  */
 @Entity
-//@Table(name = "table")
 public class UserMessage {
     @Id
     @GeneratedValue
