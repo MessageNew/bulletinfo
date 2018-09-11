@@ -13,4 +13,11 @@ public class ResultUtils {
         result.setData(object);
         return result;
     }
+    public static Result filed(Object object){
+        Result result = new Result();
+        result.setCode(202);
+        result.setMsg("失败");
+        result.setData(object);
+        return result;
+    }
 }
