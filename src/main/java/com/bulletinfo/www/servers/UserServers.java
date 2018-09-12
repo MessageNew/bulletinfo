@@ -1,11 +1,11 @@
 package com.bulletinfo.www.servers;
-
 import com.bulletinfo.www.domain.User;
 import com.bulletinfo.www.respository.UserRespository;
+import org.hibernate.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
+import org.springframework.transaction.annotation.Transactional;
+import java.sql.SQLException;
 
 /**
  * Created by Mysteriouseyes on 2018/9/5.
@@ -13,17 +13,15 @@ import java.util.List;
 @Service
 public class UserServers {
     @Autowired
-    private UserRespository dao;
+    private UserRespository userRespository;
 
-    public User AddUser(User user){
-        return dao.save(user);
-    }
-
-    public List<User> Login(User user){
-       return dao.findByLogin(user.getUid(),user.getPassword());
-    }
-
-
-
-
+    //查询一个信息
+    //grilRespository.findOne(id);
+    //更新一个信息,需要传入id
+    //@PutMapping(value = "/update")
+    //put 更倾向于更新操作，post倾向于新增
+    //grilRespository.save(gril);
+    //删除操作
+    //@DeleteMapping(value = "/delete")
+    //grilRespository.delete(id);
 }

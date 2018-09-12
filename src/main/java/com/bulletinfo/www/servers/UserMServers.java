@@ -1,8 +1,6 @@
 package com.bulletinfo.www.servers;
 
 import com.bulletinfo.www.domain.Result;
-import com.bulletinfo.www.domain.UserMessage;
-import com.bulletinfo.www.respository.UMResponsitory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +10,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserMServers {
     @Autowired
-    private UMResponsitory umResponsitory;
 
     /**
      * 消息发送:发送格式

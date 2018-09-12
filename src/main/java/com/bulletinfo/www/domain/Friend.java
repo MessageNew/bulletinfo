@@ -13,8 +13,10 @@ public class Friend {
     @Id
     @GeneratedValue
     private Integer id;
-
+    /** 本人的id **/
     private String Uid;
+    /** 好友的uid **/
+    private String Fid;
     private String UserName;
 
     public Integer getId() {
@@ -42,4 +44,11 @@ public class Friend {
         Uid = uid;
     }
 
+    public String getFid() {
+        return Fid;
+    }
+
+    public void setFid(String fid) {
+        Fid = fid;
+    }
 }

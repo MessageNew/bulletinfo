@@ -13,6 +13,7 @@ public class User {
     @Id
     @GeneratedValue
     private Integer id;
+    @GeneratedValue
     private Integer Uid;
     private String Username;
     private String time;
