@@ -26,6 +26,10 @@ public class UserServers {
         }
         return false;
     }
+
+    public User SelectUInfo(Integer uid){
+        return userRespository.findByUid(uid);
+    }
     //查询一个信息
     //grilRespository.findOne(id);
     //更新一个信息,需要传入id

@@ -1,10 +1,8 @@
 package com.bulletinfo.www.controller;
 
-import com.bulletinfo.www.domain.Friend;
-import com.bulletinfo.www.domain.Result;
-import com.bulletinfo.www.domain.User;
-import com.bulletinfo.www.domain.UserMessage;
+import com.bulletinfo.www.domain.*;
 import com.bulletinfo.www.servers.FServers;
+import com.bulletinfo.www.servers.GroupService;
 import com.bulletinfo.www.servers.UserMServers;
 import com.bulletinfo.www.servers.UserServers;
 import com.bulletinfo.www.utils.ResultUtils;
@@ -12,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -24,6 +23,9 @@ public class MainController {
 
     @Autowired
     private UserMServers userMServers;
+
+    @Autowired
+    private GroupService groupService;
 
     @PostMapping(value = "/")
     public String MainTest(){
@@ -87,6 +89,32 @@ public class MainController {
     public Result ReciveMsg(@PathVariable Integer mid, @PathVariable Integer uid){
         List<UserMessage> list = userMServers.ReceiveMsg(mid, uid);
         return ResultUtils.success(list);
+    }
+
+    /**
+     * 创建群，自动生成gid
+     * @param groups
+     * @return
+     */
+    @PostMapping("/createGroup")
+    public Result CreateGroup(@Valid Groups groups){
+        groupService.CreateGroup(groups);
+        return ResultUtils.success(null);
+    }
+
+    /**
+     * 查询群成员信息
+     * @param gid
+     * @return
+     */
+    @PostMapping("/selectGPersons/{gid}")
+    public Result SelectGroupsPerson(@PathVariable Integer gid){
+        List list = groupService.SelectGPersons(gid);
+        List pLists = new ArrayList();
+        for(Object li : list){
+            pLists.add(userServers.SelectUInfo(Integer.valueOf(String.valueOf(li))));
+        }
+        return ResultUtils.success(pLists);
     }
 
 
