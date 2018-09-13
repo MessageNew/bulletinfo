@@ -13,12 +13,11 @@ public class User {
     @Id
     @GeneratedValue
     private Integer id;
-    @GeneratedValue
-    private Integer Uid;
-    private String Username;
+    private Integer uid;
+    private String username;
     private String time;
     private String password;
-    private String Sex;
+    private String sex;
     private String phone;
     private String age;
     private String address;
@@ -33,19 +32,19 @@ public class User {
     }
 
     public Integer getUid() {
-        return Uid;
+        return uid;
     }
 
     public void setUid(Integer uid) {
-        Uid = uid;
+        this.uid = uid;
     }
 
     public String getUsername() {
-        return Username;
+        return username;
     }
 
     public void setUsername(String username) {
-        Username = username;
+        this.username = username;
     }
 
     public String getTime() {
@@ -65,11 +64,11 @@ public class User {
     }
 
     public String getSex() {
-        return Sex;
+        return sex;
     }
 
     public void setSex(String sex) {
-        Sex = sex;
+        this.sex = sex;
     }
 
     public String getPhone() {
@@ -108,11 +107,11 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", Uid=" + Uid +
-                ", Username='" + Username + '\'' +
+                ", uid=" + uid +
+                ", username='" + username + '\'' +
                 ", time='" + time + '\'' +
                 ", password='" + password + '\'' +
-                ", Sex='" + Sex + '\'' +
+                ", sex='" + sex + '\'' +
                 ", phone='" + phone + '\'' +
                 ", age='" + age + '\'' +
                 ", address='" + address + '\'' +

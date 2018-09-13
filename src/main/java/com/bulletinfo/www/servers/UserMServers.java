@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class UserMServers {
-    @Autowired
+
 
     /**
      * 消息发送:发送格式

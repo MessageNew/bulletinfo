@@ -3,10 +3,10 @@ package com.bulletinfo.www.domain;
 /**
  * Created by Mysteriouseyes on 2018/9/6.
  */
-public class Result<T> {
+public class Result<Object> {
     private Integer code;
     private String msg;
-    private T data;
+    private Object data;
 
     public Integer getCode() {
         return code;
@@ -24,11 +24,11 @@ public class Result<T> {
         this.msg = msg;
     }
 
-    public T getData() {
+    public Object getData() {
         return data;
     }
 
-    public void setData(T data) {
+    public void setData(Object data) {
         this.data = data;
     }
 }

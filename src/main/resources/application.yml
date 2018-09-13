@@ -15,12 +15,9 @@ spring:
       # none 默认什么都不做
       # validate 验证类属性与表结构是否一致,不一致则报错
         #ddl-auto: create
-        ddl-auto: none
+        ddl-auto: create
       # 控制台显示sql语句
       show-sql: true
-      properties:
-        hibernate:
-          current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext
     http:
       #编码
       encoding:

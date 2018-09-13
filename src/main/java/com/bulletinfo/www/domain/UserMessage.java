@@ -13,9 +13,9 @@ public class UserMessage {
     @Id
     @GeneratedValue
     private Integer id;
-    private String Put_User;
-    private String Get_User;
-    private String Message;
+    private Integer put_User;
+    private Integer get_User;
+    private String message;
     private String time;
 
     public Integer getId() {
@@ -26,28 +26,28 @@ public class UserMessage {
         this.id = id;
     }
 
-    public String getPut_User() {
-        return Put_User;
+    public Integer getPut_User() {
+        return put_User;
     }
 
-    public void setPut_User(String put_User) {
-        Put_User = put_User;
+    public void setPut_User(Integer put_User) {
+        this.put_User = put_User;
     }
 
-    public String getGet_User() {
-        return Get_User;
+    public Integer getGet_User() {
+        return get_User;
     }
 
-    public void setGet_User(String get_User) {
-        Get_User = get_User;
+    public void setGet_User(Integer get_User) {
+        this.get_User = get_User;
     }
 
     public String getMessage() {
-        return Message;
+        return message;
     }
 
     public void setMessage(String message) {
-        Message = message;
+        this.message = message;
     }
 
     public String getTime() {

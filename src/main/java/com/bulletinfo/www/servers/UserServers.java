@@ -1,11 +1,9 @@
 package com.bulletinfo.www.servers;
 import com.bulletinfo.www.domain.User;
 import com.bulletinfo.www.respository.UserRespository;
-import org.hibernate.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import java.sql.SQLException;
 
 /**
  * Created by Mysteriouseyes on 2018/9/5.
@@ -15,6 +13,18 @@ public class UserServers {
     @Autowired
     private UserRespository userRespository;
 
+    @Transactional
+    public void AddUser(User user){
+        userRespository.save(user);
+    }
+
+    public boolean Login(Integer uid, String upwd){
+        User user = userRespository.findByUidAndPassword(uid, upwd);
+        if(user != null){
+            return true;
+        }
+        return false;
+    }
     //查询一个信息
     //grilRespository.findOne(id);
     //更新一个信息,需要传入id

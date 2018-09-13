@@ -14,41 +14,40 @@ public class Friend {
     @GeneratedValue
     private Integer id;
     /** 本人的id **/
-    private String Uid;
+    private Integer uid;
     /** 好友的uid **/
-    private String Fid;
-    private String UserName;
+    private String fid;
+    private String userName;
 
     public Integer getId() {
         return id;
     }
 
-    public String getUserName() {
-        return UserName;
-    }
-
-    public void setUserName(String userName) {
-        UserName = userName;
-    }
-
     public void setId(Integer id) {
         this.id = id;
-
     }
 
-    public String getUid() {
-        return Uid;
+    public Integer getUid() {
+        return uid;
     }
 
-    public void setUid(String uid) {
-        Uid = uid;
+    public void setUid(Integer uid) {
+        this.uid = uid;
     }
 
     public String getFid() {
-        return Fid;
+        return fid;
     }
 
     public void setFid(String fid) {
-        Fid = fid;
+        this.fid = fid;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 }
