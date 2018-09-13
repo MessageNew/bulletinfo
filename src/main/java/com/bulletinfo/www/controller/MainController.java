@@ -118,7 +118,7 @@ public class MainController {
     }
 
     /**
-     * 发送群消息
+     * 发送群消息,记得需要群id
      * @param groupMessage
      * @return
      */
@@ -126,6 +126,21 @@ public class MainController {
     public Result SendGMsg(@Valid GroupMessage groupMessage){
         gmService.SendGMsg(groupMessage);
         return ResultUtils.success(null);
+    }
+
+    /**
+     * 更新所有的群消息
+     * @param uid
+     * @return
+     */
+    @PostMapping("/reciveGmsg/{uid}")
+    public Result ReceiveGmsg(@PathVariable Integer uid){
+        List lists = userServers.SelectGidLists(uid);
+        List glists = new ArrayList();
+        for(Object li : lists){
+            glists.add(gmService.SelectGidMsg(Integer.valueOf(String.valueOf(li))));
+        }
+        return ResultUtils.success(glists);
     }
 
 

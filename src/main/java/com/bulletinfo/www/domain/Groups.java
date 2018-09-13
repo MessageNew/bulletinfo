@@ -15,7 +15,7 @@ public class Groups {
     private String gName;
     private String gPersonnel;
     private String time;
-    private String gMaster;
+    private Integer gMaster;
     private Integer gId;
 
     public Integer getId() {
@@ -50,11 +50,11 @@ public class Groups {
         this.time = time;
     }
 
-    public String getgMaster() {
+    public Integer getgMaster() {
         return gMaster;
     }
 
-    public void setgMaster(String gMaster) {
+    public void setgMaster(Integer gMaster) {
         this.gMaster = gMaster;
     }
 

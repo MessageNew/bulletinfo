@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * Created by Mysteriouseyes on 2018/9/13.
  */
@@ -17,5 +19,9 @@ public class GMService {
     @Transactional
     public void SendGMsg(GroupMessage groupMessage){
         gmResponsitory.save(groupMessage);
+    }
+
+    public List SelectGidMsg(Integer gid){
+        return gmResponsitory.findByGid(gid);
     }
 }

@@ -1,6 +1,7 @@
 package com.bulletinfo.www.servers;
 
 import com.bulletinfo.www.domain.Groups;
+import com.bulletinfo.www.domain.User;
 import com.bulletinfo.www.respository.GroupResponsitory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,10 +18,24 @@ public class GroupService {
     @Autowired
     private GroupResponsitory groupResponsitory;
 
+    @Autowired
+    private UserServers userServers;
+
     @Transactional
     public void CreateGroup(Groups groups){
-        groups.setgId(Integer.valueOf(String.valueOf(groupResponsitory.count())) + 1);
+        Integer gid = Integer.valueOf(String.valueOf(groupResponsitory.count())) + 1;
+        groups.setgId(gid);
+        Integer uid = groups.getgMaster();
         groupResponsitory.save(groups);
+        User user = userServers.SelectUInfo(uid);
+        String lists = null;
+        if(user.getGidList() == null){
+            lists = String.valueOf(gid);
+        } else {
+            lists = user.getGidList().toString();
+            lists += ","+gid;
+        }
+        userServers.UpdateGidlists(lists, uid);
     }
 
     public List SelectGPersons(Integer gid){
@@ -28,5 +43,7 @@ public class GroupService {
         List list = Arrays.asList(groups.getgPersonnel().toString().split(","));
         return list;
     }
+
+
 
 }

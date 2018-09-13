@@ -14,6 +14,7 @@ public class GroupMessage {
     private Integer id;
     private String msg;
     private String time;
+    private Integer gid;
     private Integer uid;
 
     public Integer getId() {
@@ -46,5 +47,13 @@ public class GroupMessage {
 
     public void setUid(Integer uid) {
         this.uid = uid;
+    }
+
+    public Integer getGid() {
+        return gid;
+    }
+
+    public void setGid(Integer gid) {
+        this.gid = gid;
     }
 }

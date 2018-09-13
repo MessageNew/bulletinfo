@@ -5,6 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.sql.rowset.serial.SerialStruct;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Created by Mysteriouseyes on 2018/9/5.
  */
@@ -29,6 +33,16 @@ public class UserServers {
 
     public User SelectUInfo(Integer uid){
         return userRespository.findByUid(uid);
+    }
+
+    public void UpdateGidlists(String glists, Integer uid){
+        userRespository.UpdateGidList(glists, uid);
+    }
+
+    public List SelectGidLists(Integer uid){
+        User user = userRespository.findByUid(uid);
+        List list = Arrays.asList(user.getGidList().toString().split(","));
+        return list;
     }
     //查询一个信息
     //grilRespository.findOne(id);

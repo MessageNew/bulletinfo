@@ -17,6 +17,8 @@ public class User {
     private String username;
     private String time;
     private String password;
+    /**加入的群id列表**/
+    private String gidList;
     private String sex;
     private String phone;
     private String age;
@@ -85,6 +87,14 @@ public class User {
 
     public void setAge(String age) {
         this.age = age;
+    }
+
+    public String getGidList() {
+        return gidList;
+    }
+
+    public void setGidList(String gidList) {
+        this.gidList = gidList;
     }
 
     public String getAddress() {
