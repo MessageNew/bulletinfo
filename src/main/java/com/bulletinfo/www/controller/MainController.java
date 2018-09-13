@@ -3,7 +3,9 @@ package com.bulletinfo.www.controller;
 import com.bulletinfo.www.domain.Friend;
 import com.bulletinfo.www.domain.Result;
 import com.bulletinfo.www.domain.User;
+import com.bulletinfo.www.domain.UserMessage;
 import com.bulletinfo.www.servers.FServers;
+import com.bulletinfo.www.servers.UserMServers;
 import com.bulletinfo.www.servers.UserServers;
 import com.bulletinfo.www.utils.ResultUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,9 @@ public class MainController {
 
     @Autowired
     private UserServers userServers;
+
+    @Autowired
+    private UserMServers userMServers;
 
     @PostMapping(value = "/")
     public String MainTest(){
@@ -60,5 +65,29 @@ public class MainController {
         boolean result= userServers.Login(uid, upwd);
         return ResultUtils.success(result);
     }
+
+    /**
+     * 发送消息
+     * @param userMessage
+     * @return
+     */
+    @PostMapping("/sendmsg")
+    public Result SendMsg(@Valid UserMessage userMessage){
+        userMServers.SendMsg(userMessage);
+        return ResultUtils.success(null);
+    }
+
+    /**
+     * 查询好友间的聊天信息，接收消息
+     * @param mid
+     * @param uid
+     * @return
+     */
+    @PostMapping("/receive/{mid}/{uid}")
+    public Result ReciveMsg(@PathVariable Integer mid, @PathVariable Integer uid){
+        List<UserMessage> list = userMServers.ReceiveMsg(mid, uid);
+        return ResultUtils.success(list);
+    }
+
 
 }

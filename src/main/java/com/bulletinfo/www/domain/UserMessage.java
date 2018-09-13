@@ -13,8 +13,8 @@ public class UserMessage {
     @Id
     @GeneratedValue
     private Integer id;
-    private Integer put_User;
-    private Integer get_User;
+    private Integer putUser;
+    private Integer getUser;
     private String message;
     private String time;
 
@@ -26,20 +26,20 @@ public class UserMessage {
         this.id = id;
     }
 
-    public Integer getPut_User() {
-        return put_User;
+    public Integer getPutUser() {
+        return putUser;
     }
 
-    public void setPut_User(Integer put_User) {
-        this.put_User = put_User;
+    public void setPutUser(Integer putUser) {
+        this.putUser = putUser;
     }
 
-    public Integer getGet_User() {
-        return get_User;
+    public Integer getGetUser() {
+        return getUser;
     }
 
-    public void setGet_User(Integer get_User) {
-        this.get_User = get_User;
+    public void setGetUser(Integer getUser) {
+        this.getUser = getUser;
     }
 
     public String getMessage() {
