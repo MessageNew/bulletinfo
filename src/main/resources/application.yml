@@ -15,7 +15,7 @@ spring:
       # none 默认什么都不做
       # validate 验证类属性与表结构是否一致,不一致则报错
         #ddl-auto: create
-        ddl-auto: create
+        ddl-auto: update
       # 控制台显示sql语句
       show-sql: true
     http:

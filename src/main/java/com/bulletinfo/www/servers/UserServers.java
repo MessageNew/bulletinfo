@@ -15,6 +15,7 @@ public class UserServers {
 
     @Transactional
     public void AddUser(User user){
+        user.setUid(Integer.valueOf(String.valueOf(userRespository.count())) + 1);
         userRespository.save(user);
     }
 

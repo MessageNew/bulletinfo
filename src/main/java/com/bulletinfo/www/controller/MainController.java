@@ -38,12 +38,23 @@ public class MainController {
         return ResultUtils.success(null);
     }
 
+    /**
+     * 遍历uid的好友
+     * @param uid
+     * @return
+     */
     @PostMapping("/friends/{uid}")
     public Result FindByFriend(@PathVariable Integer uid){
         List<Friend> list = fServers.UserList(uid);
         return ResultUtils.success(list);
     }
 
+    /**
+     * 登录判断
+     * @param uid
+     * @param upwd
+     * @return
+     */
     @PostMapping("/login/{uid}/{upwd}")
     public Result Login(@PathVariable Integer uid, @PathVariable String upwd){
         boolean result= userServers.Login(uid, upwd);
