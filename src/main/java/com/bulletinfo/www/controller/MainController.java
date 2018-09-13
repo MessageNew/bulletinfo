@@ -1,10 +1,7 @@
 package com.bulletinfo.www.controller;
 
 import com.bulletinfo.www.domain.*;
-import com.bulletinfo.www.servers.FServers;
-import com.bulletinfo.www.servers.GroupService;
-import com.bulletinfo.www.servers.UserMServers;
-import com.bulletinfo.www.servers.UserServers;
+import com.bulletinfo.www.servers.*;
 import com.bulletinfo.www.utils.ResultUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +23,9 @@ public class MainController {
 
     @Autowired
     private GroupService groupService;
+
+    @Autowired
+    private GMService gmService;
 
     @PostMapping(value = "/")
     public String MainTest(){
@@ -115,6 +115,17 @@ public class MainController {
             pLists.add(userServers.SelectUInfo(Integer.valueOf(String.valueOf(li))));
         }
         return ResultUtils.success(pLists);
+    }
+
+    /**
+     * 发送群消息
+     * @param groupMessage
+     * @return
+     */
+    @PostMapping("/SendGMsg")
+    public Result SendGMsg(@Valid GroupMessage groupMessage){
+        gmService.SendGMsg(groupMessage);
+        return ResultUtils.success(null);
     }
 
 
