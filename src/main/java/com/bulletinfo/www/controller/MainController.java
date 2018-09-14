@@ -143,5 +143,24 @@ public class MainController {
         return ResultUtils.success(glists);
     }
 
+    /**
+     * 更新所有的好友消息
+     * @param uid
+     * @return
+     */
+    @PostMapping("/receiveFmsg/{uid}")
+    public Result ReceiveFMsg(@PathVariable Integer uid){
+        List<Friend> lists = fServers.UserList(uid);
+        List<Integer> flist = new ArrayList<>();
+        List mlists = new ArrayList<>();
+        for(Friend li : lists){
+            flist.add(li.getFid());
+        }
+        for(Integer li : flist){
+            mlists.add(userMServers.ReceiveMsg(uid, li));
+        }
+        return ResultUtils.success(mlists);
+    }
+
 
 }

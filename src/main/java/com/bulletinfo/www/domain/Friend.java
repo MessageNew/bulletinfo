@@ -16,8 +16,18 @@ public class Friend {
     /** 本人的id **/
     private Integer uid;
     /** 好友的uid **/
-    private String fid;
+    private Integer fid;
     private String userName;
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    private String time;
 
     public Integer getId() {
         return id;
@@ -35,11 +45,11 @@ public class Friend {
         this.uid = uid;
     }
 
-    public String getFid() {
+    public Integer getFid() {
         return fid;
     }
 
-    public void setFid(String fid) {
+    public void setFid(Integer fid) {
         this.fid = fid;
     }
 
