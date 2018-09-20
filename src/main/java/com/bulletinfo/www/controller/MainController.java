@@ -5,6 +5,8 @@ import com.bulletinfo.www.servers.*;
 import com.bulletinfo.www.utils.ResultUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import javax.persistence.GeneratedValue;
 import javax.validation.Valid;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -68,19 +70,9 @@ public class MainController {
         return ResultUtils.success(result);
     }
 
-    /**
-     * 发送消息
-     * @param userMessage
-     * @return
-     */
-    @PostMapping("/sendmsg")
-    public Result SendMsg(@Valid UserMessage userMessage){
-        userMServers.SendMsg(userMessage);
-        return ResultUtils.success(null);
-    }
 
     /**
-     * 查询好友间的聊天信息，接收消息
+     * 查询好友间的聊天记录
      * @param mid
      * @param uid
      * @return
@@ -118,17 +110,6 @@ public class MainController {
     }
 
     /**
-     * 发送群消息,记得需要群id
-     * @param groupMessage
-     * @return
-     */
-    @PostMapping("/SendGMsg")
-    public Result SendGMsg(@Valid GroupMessage groupMessage){
-        gmService.SendGMsg(groupMessage);
-        return ResultUtils.success(null);
-    }
-
-    /**
      * 更新所有的群消息
      * @param uid
      * @return
@@ -161,6 +142,5 @@ public class MainController {
         }
         return ResultUtils.success(mlists);
     }
-
 
 }

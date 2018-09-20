@@ -18,5 +18,4 @@ public interface UserRespository extends JpaRepository<User, Long> {
      @Modifying
      @Query("update User u set u.gidList = ?1 where u.uid = ?2")
      public void UpdateGidList(String glist, Integer uid);
-
 }

@@ -24,6 +24,26 @@ public class User {
     private String age;
     private String address;
     private String icourl;
+    /**  当前用户登录ip **/
+    private String ip;
+    /** 是否在线 **/
+    private String state;
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getIp() {
+        return ip;
+    }
+
+    public void setIp(String ip) {
+        this.ip = ip;
+    }
 
     public Integer getId() {
         return id;
@@ -121,11 +141,14 @@ public class User {
                 ", username='" + username + '\'' +
                 ", time='" + time + '\'' +
                 ", password='" + password + '\'' +
+                ", gidList='" + gidList + '\'' +
                 ", sex='" + sex + '\'' +
                 ", phone='" + phone + '\'' +
                 ", age='" + age + '\'' +
                 ", address='" + address + '\'' +
                 ", icourl='" + icourl + '\'' +
+                ", ip='" + ip + '\'' +
+                ", state='" + state + '\'' +
                 '}';
     }
 }
