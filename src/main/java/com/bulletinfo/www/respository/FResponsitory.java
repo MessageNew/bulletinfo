@@ -16,6 +16,6 @@ public interface FResponsitory extends JpaRepository<Friend, Integer> {
     List<Friend> findByUid(Integer uid);
 
     @Modifying
-    @Query("delete from Friend where fid=?1 and uid=?2")
+    @Query("delete from Friend where uid=?1 and fid=?2")
     void DeleteFriend(Integer uid,Integer fid);
 }
