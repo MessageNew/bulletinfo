@@ -22,4 +22,9 @@ public class FServers {
         List<Friend> list = fResponsitory.findByUid(uid);
         return list;
     }
+
+    public void DeleteFriend(Integer uid,Integer fid){
+        fResponsitory.DeleteFriend(uid,fid);
+    }
+
 }

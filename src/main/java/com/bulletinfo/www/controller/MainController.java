@@ -6,7 +6,6 @@ import com.bulletinfo.www.utils.ResultUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.GeneratedValue;
 import javax.validation.Valid;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -141,6 +140,22 @@ public class MainController {
             mlists.add(userMServers.ReceiveMsg(uid, li));
         }
         return ResultUtils.success(mlists);
+    }
+
+    /**
+     * 删除好友
+     * @param uid
+     * @param fid
+     * @return
+     */
+    @PostMapping("/delFriend/{uid}/{fid}")
+    public Result DelFriend(@PathVariable Integer uid,@PathVariable Integer fid){
+        Result result = new Result();
+        fServers.DeleteFriend(uid,fid);
+        fServers.DeleteFriend(fid,uid);
+        result.setCode(200);
+        result.setMsg("成功");
+        return result;
     }
 
 }
