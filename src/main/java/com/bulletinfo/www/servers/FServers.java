@@ -23,6 +23,7 @@ public class FServers {
         return list;
     }
 
+    @Transactional
     public void DeleteFriend(Integer uid,Integer fid){
         fResponsitory.DeleteFriend(uid,fid);
     }

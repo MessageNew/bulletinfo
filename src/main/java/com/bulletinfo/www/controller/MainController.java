@@ -149,7 +149,7 @@ public class MainController {
      * @return
      */
     @PostMapping("/delFriend/{uid}/{fid}")
-    public Result DelFriend(@PathVariable Integer uid,@PathVariable Integer fid){
+    public Result DelFriend(@PathVariable("uid") Integer uid,@PathVariable("fid") Integer fid){
         fServers.DeleteFriend(uid,fid);
         fServers.DeleteFriend(fid,uid);
         return ResultUtils.success(null);
