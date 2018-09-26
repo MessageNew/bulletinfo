@@ -150,10 +150,12 @@ public class MainController {
      */
     @PostMapping("/delFriend/{uid}/{fid}")
     public Result DelFriend(@PathVariable Integer uid,@PathVariable Integer fid){
-        System.out.println(uid+fid);
+        Result result = new Result();
         fServers.DeleteFriend(uid,fid);
         fServers.DeleteFriend(fid,uid);
-        return ResultUtils.success(null);
+        result.setCode(200);
+        result.setMsg("成功");
+        return result;
     }
 
 }
