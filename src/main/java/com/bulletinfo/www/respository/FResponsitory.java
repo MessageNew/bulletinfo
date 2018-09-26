@@ -5,6 +5,7 @@ import com.bulletinfo.www.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -16,6 +17,6 @@ public interface FResponsitory extends JpaRepository<Friend, Integer> {
     List<Friend> findByUid(Integer uid);
 
     @Modifying
-    @Query("delete from Friend where uid=?1 and fid=?2")
-    void DeleteFriend(Integer uid,Integer fid);
+    @Query("delete from Friend f where f.uid=:uid and f.fid=:fid")
+    void DeleteFriend(@Param("uid")Integer uid, @Param("fid")Integer fid);
 }
