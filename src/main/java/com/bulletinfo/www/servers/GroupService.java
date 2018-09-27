@@ -44,6 +44,14 @@ public class GroupService {
         return list;
     }
 
+    @Transactional
+    public void UpdateGpersonnel(String gPersonnel,Integer gId){
+        groupResponsitory.UpdateGpersonnel(gPersonnel,gId);
+    }
 
+    @Transactional
+    public void DelGroup(Integer gId){
+        groupResponsitory.DelGroup(gId);
+    }
 
 }

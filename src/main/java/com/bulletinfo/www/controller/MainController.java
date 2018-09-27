@@ -5,7 +5,7 @@ import com.bulletinfo.www.servers.*;
 import com.bulletinfo.www.utils.ResultUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
+import org.apache.commons.lang3.StringUtils;
 import javax.validation.Valid;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -152,6 +152,37 @@ public class MainController {
     public Result DelFriend(@PathVariable("uid") Integer uid,@PathVariable("fid") Integer fid){
         fServers.DeleteFriend(uid,fid);
         fServers.DeleteFriend(fid,uid);
+        return ResultUtils.success(null);
+    }
+
+    /**
+     * 退群
+     * @param gId
+     * @param uid
+     * @return
+     */
+    @PostMapping("exitGroup/{gId}/{uid}")
+    public Result ExitGroup(@PathVariable Integer gId,@PathVariable Integer uid){
+        List gPersons = new ArrayList(groupService.SelectGPersons(gId));
+        String uId = String.valueOf(uid);
+        for (int i=0;i<gPersons.size();i++){
+            if(gPersons.get(i).equals(uId)){
+                gPersons.remove(i);
+            }
+        }
+        String gPersonnel = StringUtils.join(gPersons,",");
+        groupService.UpdateGpersonnel(gPersonnel,gId);
+        return ResultUtils.success(null);
+    }
+
+    /**
+     * 解散群
+     * @param gId
+     * @return
+     */
+    @PostMapping("delGroup/{gId}")
+    public Result DelGroup(@PathVariable Integer gId){
+        groupService.DelGroup(gId);
         return ResultUtils.success(null);
     }
 
