@@ -11,6 +11,7 @@ import javax.persistence.Id;
 public class Groups {
     @Id
     @GeneratedValue
+    /*群名，群人员（用户ID），建群时间，群主，群ID*/
     private Integer id;
     private String gName;
     private String gPersonnel;
