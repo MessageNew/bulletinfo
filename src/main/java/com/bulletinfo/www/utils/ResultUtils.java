@@ -7,7 +7,8 @@ import com.bulletinfo.www.domain.Result;
  */
 public class ResultUtils {
     public static Result success(Object object){
-
+        String msg = String.valueOf(object);
+        object = Encipher.Encode(msg);
         Result result = new Result();
         result.setCode(200);
         result.setMsg("成功");
@@ -16,6 +17,8 @@ public class ResultUtils {
     }
 
     public static Result filed(Object object){
+        String msg = String.valueOf(object);
+        object = Encipher.Encode(msg);
         Result result = new Result();
         result.setCode(202);
         result.setMsg("失败");
