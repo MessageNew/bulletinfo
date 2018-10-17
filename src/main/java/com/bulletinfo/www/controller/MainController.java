@@ -69,6 +69,16 @@ public class MainController {
         return ResultUtils.success(result);
     }
 
+    /**
+     * 账号验证
+     * @param phone
+     * @return
+     */
+    @PostMapping("/login/{phone}")
+    public Result CheckAccount(@PathVariable String phone){
+        boolean result= userServers.CheckAccount(phone);
+        return ResultUtils.success(result);
+    }
 
     /**
      * 查询好友间的聊天记录

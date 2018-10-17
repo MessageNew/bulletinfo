@@ -31,6 +31,14 @@ public class UserServers {
         return false;
     }
 
+    public boolean CheckAccount(String phone){
+        User user = userRespository.findByPhone(phone);
+        if(user != null){
+            return true;
+        }
+        return false;
+    }
+
     public User SelectUInfo(Integer uid){
         return userRespository.findByUid(uid);
     }

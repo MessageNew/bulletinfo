@@ -14,6 +14,7 @@ public interface UserRespository extends JpaRepository<User, Long> {
 
      public User findByUidAndPassword(Integer uid, String upwd);
      public User findByUid(Integer uid);
+     public User findByPhone(String phone);
 
      @Modifying
      @Query("update User u set u.gidList = ?1 where u.uid = ?2")
