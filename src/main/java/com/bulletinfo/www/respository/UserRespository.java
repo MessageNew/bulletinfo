@@ -12,11 +12,15 @@ import java.util.List;
  */
 public interface UserRespository extends JpaRepository<User, Long> {
 
-     public User findByUidAndPassword(Integer uid, String upwd);
+     //public User findByUidAndPassword(Integer uid, String upwd);
      public User findByUid(Integer uid);
      public User findByPhone(String phone);
 
      @Modifying
      @Query("update User u set u.gidList = ?1 where u.uid = ?2")
      public void UpdateGidList(String glist, Integer uid);
+
+     @Modifying
+     @Query("update User u set u.password = ?1 where u.phone = ?2")
+     public void UpdatePw(String password,String phone);
 }

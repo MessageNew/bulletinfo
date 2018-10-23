@@ -102,11 +102,31 @@ public class Encipher{
     }
 
     /**
+     * 加密调用
+     * @param msg
+     * @return
+     */
+    public static String Encode1(String msg){
+        msg = EncodePasswd(msg);
+        return msg;
+    }
+
+    /**
      * 解密调用
      * @param msg
      * @return
      */
     public static Object Decode(String msg){
+        msg = DecodePasswd(msg);
+        return msg;
+    }
+
+    /**
+     * 解密调用
+     * @param msg
+     * @return
+     */
+    public static String Decode1(String msg){
         msg = DecodePasswd(msg);
         return msg;
     }
