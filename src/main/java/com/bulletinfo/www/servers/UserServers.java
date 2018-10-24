@@ -1,6 +1,7 @@
 package com.bulletinfo.www.servers;
 import com.bulletinfo.www.domain.User;
 import com.bulletinfo.www.respository.UserRespository;
+import com.bulletinfo.www.utils.Encipher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,7 +25,17 @@ public class UserServers {
     }
 
     public boolean Login(Integer uid, String upwd){
-        User user = userRespository.findByUidAndPassword(uid, upwd);
+        User user = userRespository.findByUid(uid);
+        String pw = Encipher.Decode1(user.getPassword());
+        //User user = userRespository.findByUidAndPassword(uid, upwd);
+        if(upwd.equals(pw)){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean CheckAccount(String phone){
+        User user = userRespository.findByPhone(phone);
         if(user != null){
             return true;
         }
@@ -37,6 +48,12 @@ public class UserServers {
 
     public void UpdateGidlists(String glists, Integer uid){
         userRespository.UpdateGidList(glists, uid);
+    }
+
+    @Transactional
+    public void UpdatePw(String password,String phone) {
+        password = Encipher.Encode1(password);
+        userRespository.UpdatePw(password,phone);
     }
 
     public List SelectGidLists(Integer uid){

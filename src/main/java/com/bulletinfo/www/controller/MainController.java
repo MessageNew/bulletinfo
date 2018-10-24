@@ -2,6 +2,7 @@ package com.bulletinfo.www.controller;
 
 import com.bulletinfo.www.domain.*;
 import com.bulletinfo.www.servers.*;
+import com.bulletinfo.www.utils.Encipher;
 import com.bulletinfo.www.utils.ResultUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -66,9 +67,39 @@ public class MainController {
     @PostMapping("/login/{uid}/{upwd}")
     public Result Login(@PathVariable Integer uid, @PathVariable String upwd){
         boolean result= userServers.Login(uid, upwd);
-        return ResultUtils.success(result);
+        if (result == false){
+            return ResultUtils.filed(result);
+        }else {
+            return ResultUtils.success(result);
+        }
     }
 
+    /**
+     * 账号验证
+     * @param phone
+     * @return
+     */
+    @PostMapping("/login/{phone}")
+    public Result CheckAccount(@PathVariable String phone){
+        boolean result= userServers.CheckAccount(phone);
+        if (result == false){
+            return ResultUtils.filed(result);
+        }else {
+            return ResultUtils.success(result);
+        }
+    }
+
+    /**
+     * 修改密码
+     * @param password
+     * @param phone
+     * @return
+     */
+    @PostMapping("/updatePw/{password}/{phone}")
+    public Result UpdatePw(@PathVariable String password,@PathVariable String phone){
+        userServers.UpdatePw(password,phone);
+        return ResultUtils.success(null);
+    }
 
     /**
      * 查询好友间的聊天记录
