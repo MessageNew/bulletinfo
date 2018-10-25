@@ -8,7 +8,7 @@ spring:
       driver-class-name: com.mysql.jdbc.Driver
       url: jdbc:mysql://127.0.0.1:3306/bulletinfo
       username: root
-      password: 980524
+      password: 123456
     jpa:
       hibernate:
       # create 自动创建新表,如果之前有就会被删除
@@ -17,7 +17,7 @@ spring:
       # none 默认什么都不做
       # validate 验证类属性与表结构是否一致,不一致则报错
         #ddl-auto: create
-        ddl-auto: update
+        ddl-auto: create-drop
       # 控制台显示sql语句
       show-sql: true
     http:

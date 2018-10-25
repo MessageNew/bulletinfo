@@ -2,6 +2,7 @@ package com.bulletinfo.www.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
@@ -10,22 +11,14 @@ import javax.persistence.Id;
 @Entity
 public class Groups {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     /*群名，群人员（用户ID），建群时间，群主，群ID*/
-    private Integer id;
+    private Integer gId;
     private String gName;
     private String gPersonnel;
     private String time;
     private Integer gMaster;
-    private Integer gId;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getgName() {
         return gName;

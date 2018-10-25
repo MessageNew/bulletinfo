@@ -2,6 +2,7 @@ package com.bulletinfo.www.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
@@ -11,13 +12,12 @@ import javax.persistence.Id;
 public class Friend {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     /** 本人的id **/
     private Integer uid;
     /** 好友的uid **/
     private Integer fid;
-    private String userName;
 
     public String getTime() {
         return time;
@@ -51,13 +51,5 @@ public class Friend {
 
     public void setFid(Integer fid) {
         this.fid = fid;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
     }
 }

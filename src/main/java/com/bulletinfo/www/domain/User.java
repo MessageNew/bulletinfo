@@ -2,6 +2,7 @@ package com.bulletinfo.www.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
@@ -11,8 +12,7 @@ import javax.persistence.Id;
 public class User {
 
     @Id
-    @GeneratedValue
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer uid;
     private String username;
     private String time;
@@ -44,15 +44,6 @@ public class User {
     public void setIp(String ip) {
         this.ip = ip;
     }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     public Integer getUid() {
         return uid;
     }
@@ -136,7 +127,6 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
                 ", uid=" + uid +
                 ", username='" + username + '\'' +
                 ", time='" + time + '\'' +
