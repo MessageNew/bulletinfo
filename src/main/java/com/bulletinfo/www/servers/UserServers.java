@@ -60,6 +60,7 @@ public class UserServers {
         userRespository.UpdateGidList(glists, uid);
     }
 
+    @Transactional
     public void UpdateIcourl(String icourl,String phone){
         userRespository.UpdateIcourl(icourl,phone);
     }

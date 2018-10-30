@@ -1,11 +1,13 @@
 package com.bulletinfo.www.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.bulletinfo.www.domain.*;
 import com.bulletinfo.www.servers.*;
 import com.bulletinfo.www.utils.FileUtil;
 import com.bulletinfo.www.utils.ResultUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.*;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -136,19 +138,28 @@ public class MainController {
     }
 
     @PostMapping("/updataIcourl")
-    public Result UpdataIcourl(@RequestParam("img")MultipartFile file,HttpServletRequest req,@RequestParam("phone")String phone){
-        String filename = file.getOriginalFilename();
-        filename =FileUtil.generateGUID()+"."+FilenameUtils.getExtension(filename);
-        String filepath = req.getServletContext().getRealPath("static/"+phone+"/");
-        String icourl = "static/"+phone+"/"+filename;
+    public Object UpdataIcourl(@RequestParam("file")MultipartFile file,HttpServletRequest req,@RequestParam("phone")String phone){
+        JSONObject jsonObject = new JSONObject();
         try {
-            FileUtil.uploadFile(file.getBytes(), filepath, filename);
+            String filename = file.getOriginalFilename();
+            System.out.println("filename===="+filename);
+            filename =FileUtil.generateGUID()+"."+FilenameUtils.getExtension(filename);
+            System.out.println("filename111===="+filename);
+            String filepath = req.getServletContext().getRealPath("img/"+phone+"/");
+            String icourl = "/img/"+phone+"/"+filename;
+            System.out.println(filepath);
+            System.out.println(icourl);
+            FileUtil.uploadFile(file.getBytes(),filepath,filename);
+            //将上传文件存储到服务器中
             userServers.UpdateIcourl(icourl,phone);
+            jsonObject.put("code","200");
+            jsonObject.put("msg","成功");
         } catch (Exception e) {
-
+            jsonObject.put("code","500");
+            jsonObject.put("msg","失败");
             e.printStackTrace();
         }
-        return ResultUtils.success(null);
+        return jsonObject.toJSONString();
     }
 
     /**
