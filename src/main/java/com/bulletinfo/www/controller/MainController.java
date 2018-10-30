@@ -139,8 +139,8 @@ public class MainController {
     public Result UpdataIcourl(@RequestParam("img")MultipartFile file,HttpServletRequest req,@RequestParam("phone")String phone){
         String filename = file.getOriginalFilename();
         filename =FileUtil.generateGUID()+"."+FilenameUtils.getExtension(filename);
-        String filepath = req.getServletContext().getRealPath("resources/"+phone+"/");
-        String icourl = "resources/"+phone+"/"+filename;
+        String filepath = req.getServletContext().getRealPath("static/"+phone+"/");
+        String icourl = "static/"+phone+"/"+filename;
         try {
             FileUtil.uploadFile(file.getBytes(), filepath, filename);
             userServers.UpdateIcourl(icourl,phone);
