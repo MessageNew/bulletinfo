@@ -154,6 +154,7 @@ public class MainController {
             userServers.UpdateIcourl(icourl,phone);
             jsonObject.put("code","200");
             jsonObject.put("msg","成功");
+            jsonObject.put("data",icourl);
         } catch (Exception e) {
             jsonObject.put("code","500");
             jsonObject.put("msg","失败");
