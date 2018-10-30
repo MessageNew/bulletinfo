@@ -2,11 +2,15 @@ package com.bulletinfo.www.controller;
 
 import com.bulletinfo.www.domain.*;
 import com.bulletinfo.www.servers.*;
-import com.bulletinfo.www.utils.Encipher;
+import com.bulletinfo.www.utils.FileUtil;
 import com.bulletinfo.www.utils.ResultUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -59,6 +63,36 @@ public class MainController {
     }
 
     /**
+     * 通过uid查询信息
+     * @param uid
+     * @return
+     */
+    @PostMapping("/selectUid/{uid}")
+    public Result SelectPhone(@PathVariable Integer uid){
+        User user = userServers.SelectUInfo(uid);
+        if (user == null){
+            return ResultUtils.filed(null);
+        }else {
+            return ResultUtils.success(user);
+        }
+    }
+
+    /**
+     * 通过电话查询信息
+     * @param phone
+     * @return
+     */
+    @PostMapping("/selectPhone/{phone}")
+    public Result SelectPhone(@PathVariable String phone){
+        User user = userServers.SelectByPhone(phone);
+        if (user == null){
+            return ResultUtils.filed(null);
+        }else {
+            return ResultUtils.success(user);
+        }
+    }
+
+    /**
      * 登录判断
      * @param uid
      * @param upwd
@@ -98,6 +132,22 @@ public class MainController {
     @PostMapping("/updatePw/{password}/{phone}")
     public Result UpdatePw(@PathVariable String password,@PathVariable String phone){
         userServers.UpdatePw(password,phone);
+        return ResultUtils.success(null);
+    }
+
+    @PostMapping("/updataIcourl")
+    public Result UpdataIcourl(@RequestParam("img")MultipartFile file,HttpServletRequest req,@RequestParam("phone")String phone){
+        String filename = file.getOriginalFilename();
+        filename =FileUtil.generateGUID()+"."+FilenameUtils.getExtension(filename);
+        String filepath = req.getServletContext().getRealPath("resources/"+phone+"/");
+        String icourl = "resources/"+phone+"/"+filename;
+        try {
+            FileUtil.uploadFile(file.getBytes(), filepath, filename);
+            userServers.UpdateIcourl(icourl,phone);
+        } catch (Exception e) {
+
+            e.printStackTrace();
+        }
         return ResultUtils.success(null);
     }
 

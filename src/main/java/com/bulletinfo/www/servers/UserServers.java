@@ -20,6 +20,13 @@ public class UserServers {
 
     @Transactional
     public void AddUser(User user){
+        String password = user.getPassword();
+        String phone = user.getPhone();
+        if (password!=null){
+            password = Encipher.Encode1(password);
+            user.setPassword(password);
+            user.setPhone(phone);
+        }
         userRespository.save(user);
     }
 
@@ -45,8 +52,16 @@ public class UserServers {
         return userRespository.findByUid(uid);
     }
 
+    public User SelectByPhone(String phone){
+        return userRespository.findByPhone(phone);
+    }
+
     public void UpdateGidlists(String glists, Integer uid){
         userRespository.UpdateGidList(glists, uid);
+    }
+
+    public void UpdateIcourl(String icourl,String phone){
+        userRespository.UpdateIcourl(icourl,phone);
     }
 
     @Transactional

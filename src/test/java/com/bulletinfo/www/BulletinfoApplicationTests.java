@@ -19,9 +19,7 @@ public class BulletinfoApplicationTests {
 //		String ss = String.valueOf(object);
 //		object = Encipher.Decode(ss);
 //		System.out.println("DE:"+object);
-		String ss = "3211980524cl";
-		String s = Encipher.Encode1(ss);
-		System.out.println("EN:"+s);
+		String s = "?d$w?g?gc#$i?h%ja)?s2+]X";
 		String sss = Encipher.Decode1(s);
 		System.out.println("DE:"+sss);
 	}
