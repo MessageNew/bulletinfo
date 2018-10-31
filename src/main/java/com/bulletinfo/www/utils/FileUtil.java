@@ -39,28 +39,4 @@ public class FileUtil {
         return new BigInteger(50, new Random()).toString(36).toUpperCase();
     }
 
-    public static Map<String, Object> deleteFile(String path) {
-        Map<String, Object> map = new HashMap<>();
-        try {
-            File file = new File(path);
-            if(!file.exists()) {
-                map.put("code", "404");
-            }else {
-                file.delete();
-                path = StringUtils.substringBeforeLast(path,"\\");
-                file = new File(path);
-                File[] files = file.listFiles();
-                if(files.length == 0) {
-                    file.delete();
-                }
-                map.put("code", "200");
-            }
-        } catch (Exception e) {
-            map.put("code", "500");
-            e.printStackTrace();
-        }
-
-        return map;
-    }
-
 }
