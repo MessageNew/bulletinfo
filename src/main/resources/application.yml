@@ -1,14 +1,14 @@
 server:
-  port: 8082
+  port: 8080
   servlet:
     context-path: /bulletinfo
 debug: true
 spring:
     datasource:
       driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://127.0.0.1:3306/bulletinfo
+      url: jdbc:mysql://127.0.0.1:3306/bulletinfo?useUnicode=true&characterEncoding=UTF-8&useSSL=true
       username: root
-      password: 19980915mysql
+      password: 980524
     jpa:
       hibernate:
       # create 自动创建新表,如果之前有就会被删除

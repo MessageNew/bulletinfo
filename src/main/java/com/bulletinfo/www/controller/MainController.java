@@ -7,7 +7,6 @@ import com.bulletinfo.www.utils.FileUtil;
 import com.bulletinfo.www.utils.ResultUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.*;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -19,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 public class MainController {
     @Autowired
     private FServers fServers;
@@ -36,6 +36,7 @@ public class MainController {
     private GMService gmService;
 
     @PostMapping(value = "/")
+    @CrossOrigin
     public String MainTest(){
         return "hello";
     }
@@ -47,6 +48,7 @@ public class MainController {
      * @throws SQLException
      */
     @PostMapping("/reginster")
+    @CrossOrigin
     public Result Register(@Valid User user){
         System.out.println("user is:"+user);
         userServers.AddUser(user);
@@ -59,6 +61,7 @@ public class MainController {
      * @return
      */
     @PostMapping("/friends/{uid}")
+    @CrossOrigin
     public Result FindByFriend(@PathVariable Integer uid){
         List<Friend> list = fServers.UserList(uid);
         return ResultUtils.success(list);
@@ -70,6 +73,7 @@ public class MainController {
      * @return
      */
     @PostMapping("/selectUid/{uid}")
+    @CrossOrigin
     public Result SelectPhone(@PathVariable Integer uid){
         User user = userServers.SelectUInfo(uid);
         if (user == null){
@@ -85,6 +89,7 @@ public class MainController {
      * @return
      */
     @PostMapping("/selectPhone/{phone}")
+    @CrossOrigin
     public Result SelectPhone(@PathVariable String phone){
         User user = userServers.SelectByPhone(phone);
         if (user == null){
@@ -101,6 +106,7 @@ public class MainController {
      * @return
      */
     @PostMapping("/login/{uid}/{upwd}")
+    @CrossOrigin
     public Result Login(@PathVariable Integer uid, @PathVariable String upwd){
         boolean result= userServers.Login(uid, upwd);
         if (result == false){
@@ -116,6 +122,7 @@ public class MainController {
      * @return
      */
     @PostMapping("/login/{phone}")
+    @CrossOrigin
     public Result CheckAccount(@PathVariable String phone){
         boolean result= userServers.CheckAccount(phone);
         if (result == false){
@@ -132,12 +139,21 @@ public class MainController {
      * @return
      */
     @PostMapping("/updatePw/{password}/{phone}")
+    @CrossOrigin
     public Result UpdatePw(@PathVariable String password,@PathVariable String phone){
         userServers.UpdatePw(password,phone);
         return ResultUtils.success(null);
     }
 
+    /**
+     * 上传头像
+     * @param file
+     * @param req
+     * @param phone
+     * @return
+     */
     @PostMapping("/updataIcourl")
+    @CrossOrigin
     public Object UpdataIcourl(@RequestParam("file")MultipartFile file,HttpServletRequest req,@RequestParam("phone")String phone){
         JSONObject jsonObject = new JSONObject();
         try {
@@ -170,6 +186,7 @@ public class MainController {
      * @return
      */
     @PostMapping("/receive/{mid}/{uid}")
+    @CrossOrigin
     public Result ReciveMsg(@PathVariable Integer mid, @PathVariable Integer uid){
         List<UserMessage> list = userMServers.ReceiveMsg(mid, uid);
         return ResultUtils.success(list);
@@ -181,6 +198,7 @@ public class MainController {
      * @return
      */
     @PostMapping("/createGroup")
+    @CrossOrigin
     public Result CreateGroup(@Valid Groups groups){
         groupService.CreateGroup(groups);
         return ResultUtils.success(null);
@@ -192,6 +210,7 @@ public class MainController {
      * @return
      */
     @PostMapping("/selectGPersons/{gid}")
+    @CrossOrigin
     public Result SelectGroupsPerson(@PathVariable Integer gid){
         List list = groupService.SelectGPersons(gid);
         List pLists = new ArrayList();
@@ -207,6 +226,7 @@ public class MainController {
      * @return
      */
     @PostMapping("/reciveGmsg/{uid}")
+    @CrossOrigin
     public Result ReceiveGmsg(@PathVariable Integer uid){
         List lists = userServers.SelectGidLists(uid);
         List glists = new ArrayList();
@@ -222,6 +242,7 @@ public class MainController {
      * @return
      */
     @PostMapping("/receiveFmsg/{uid}")
+    @CrossOrigin
     public Result ReceiveFMsg(@PathVariable Integer uid){
         List<Friend> lists = fServers.UserList(uid);
         List<Integer> flist = new ArrayList<>();
@@ -242,6 +263,7 @@ public class MainController {
      * @return
      */
     @PostMapping("/delFriend/{uid}/{fid}")
+    @CrossOrigin
     public Result DelFriend(@PathVariable Integer uid,@PathVariable Integer fid){
         Result result = new Result();
         fServers.DeleteFriend(uid,fid);
@@ -258,6 +280,7 @@ public class MainController {
      * @return
      */
     @PostMapping("exitGroup/{gId}/{uid}")
+    @CrossOrigin
     public Result ExitGroup(@PathVariable Integer gId,@PathVariable Integer uid){
         List gPersons = new ArrayList(groupService.SelectGPersons(gId));
         String uId = String.valueOf(uid);
@@ -277,6 +300,7 @@ public class MainController {
      * @return
      */
     @PostMapping("delGroup/{gId}")
+    @CrossOrigin
     public Result DelGroup(@PathVariable Integer gId){
         groupService.DelGroup(gId);
         return ResultUtils.success(null);

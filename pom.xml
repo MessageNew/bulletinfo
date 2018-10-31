@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.bulletinfo.www</groupId>
-	<artifactId>Bulletinfo</artifactId>
+	<artifactId>bulletinfo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>Bulletinfo</name>
+	<name>bulletinfo</name>
 	<description>Demo project for Spring Boot</description>
 
 	<parent>
@@ -48,12 +48,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
-		</dependency>
-		<!--tomcat依赖-->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-tomcat</artifactId>
-			<scope>provided</scope>
 		</dependency>
 		<!--AOP添加依赖-->
 		<dependency>
