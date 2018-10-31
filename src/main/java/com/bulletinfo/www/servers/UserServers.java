@@ -61,6 +61,11 @@ public class UserServers {
     }
 
     @Transactional
+    public void UpdateUserName(String userName,String phone){
+        userRespository.UpdateUserName(userName,phone);
+    }
+
+    @Transactional
     public void UpdateIcourl(String icourl,String phone){
         userRespository.UpdateIcourl(icourl,phone);
     }

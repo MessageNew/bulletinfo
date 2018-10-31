@@ -146,15 +146,16 @@ public class MainController {
     }
 
     /**
-     * 上传头像
+     * 上传头像和修改用户名
      * @param file
      * @param req
      * @param phone
+     * @param userName
      * @return
      */
-    @PostMapping("/updataIcourl")
+    @PostMapping("/updateIcourl")
     @CrossOrigin
-    public Object UpdataIcourl(@RequestParam("file")MultipartFile file,HttpServletRequest req,@RequestParam("phone")String phone){
+    public Object UpdateIcourl(@RequestParam("file")MultipartFile file,HttpServletRequest req,@RequestParam("phone")String phone,@RequestParam("userName")String userName){
         JSONObject jsonObject = new JSONObject();
         try {
             String filename = file.getOriginalFilename();
@@ -168,15 +169,22 @@ public class MainController {
             FileUtil.uploadFile(file.getBytes(),filepath,filename);
             //将上传文件存储到服务器中
             userServers.UpdateIcourl(icourl,phone);
+            userServers.UpdateUserName(userName,phone);
             jsonObject.put("code","200");
             jsonObject.put("msg","成功");
-            jsonObject.put("data",icourl);
         } catch (Exception e) {
             jsonObject.put("code","500");
             jsonObject.put("msg","失败");
             e.printStackTrace();
         }
         return jsonObject.toJSONString();
+    }
+
+    @PostMapping("/updateUserName/{userName}/{phone}")
+    @CrossOrigin
+    public Result UpdateUserName(@PathVariable String userName,@PathVariable String phone){
+        userServers.UpdateUserName(userName,phone);
+        return ResultUtils.success(null);
     }
 
     /**
